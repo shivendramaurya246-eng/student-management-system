@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Student</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+  <h2>Add Student</h2>
+</div>
+
+<div class="container">
+
+<form id="studentForm">
+
+<input
+type="text"
+id="name"
+placeholder="Student Name"
+required>
+
+<input
+type="text"
+id="rollNo"
+placeholder="Roll Number"
+required>
+
+<input
+type="email"
+id="email"
+placeholder="Email"
+required>
+
+<input
+type="text"
+id="course"
+placeholder="Course"
+required>
+
+<input
+type="number"
+id="maths"
+placeholder="Maths Marks"
+required>
+
+<input
+type="number"
+id="science"
+placeholder="Science Marks"
+required>
+
+<input
+type="number"
+id="english"
+placeholder="English Marks"
+required>
+
+<button
+class="btn"
+type="submit">
+Add Student
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+document
+.getElementById("studentForm")
+.addEventListener(
+"submit",
+async (e)=>{
+
+e.preventDefault();
+
+const student = {
+
+name:
+document.getElementById("name").value,
+
+rollNo:
+document.getElementById("rollNo").value,
+
+email:
+document.getElementById("email").value,
+
+course:
+document.getElementById("course").value,
+
+maths:
+document.getElementById("maths").value,
+
+science:
+document.getElementById("science").value,
+
+english:
+document.getElementById("english").value
+
+};
+
+const response =
+await fetch(
+"http://localhost:5000/api/students",
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify(student)
+}
+);
+
+if(response.ok){
+
+alert(
+"Student Added Successfully"
+);
+
+window.location.href =
+"students.html";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
